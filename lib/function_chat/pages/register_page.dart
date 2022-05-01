@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_hellorelax/function_chat/helpers/mostrar_alerta.dart';
+import 'package:flutter_app_hellorelax/function_chat/services/auth_service.dart';
 import 'package:flutter_app_hellorelax/function_chat/widgets/boton_azul.dart';
 import 'package:flutter_app_hellorelax/function_chat/widgets/custom_input.dart';
 import 'package:flutter_app_hellorelax/function_chat/widgets/labels.dart';
 import 'package:flutter_app_hellorelax/function_chat/widgets/logo.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -50,6 +53,8 @@ class __FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+
     return Container(
       margin: const EdgeInsets.only(top: 40),
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -74,8 +79,26 @@ class __FormState extends State<_Form> {
             isPassword: true,
           ),
           BotonAzul(
-            text: 'Ingrese',
-            onPressed: () {},
+            text: 'Crear cuenta',
+            onPressed: authService.autenticando
+                ? () => {}
+                : () async {
+                    print(nameCtrl.text);
+                    print(emailCtrl.text);
+                    print(passCtrl.text);
+                    final registroOk = await authService.register(
+                        nameCtrl.text.trim(),
+                        emailCtrl.text.trim(),
+                        passCtrl.text.trim());
+
+                    if (registroOk == true) {
+                      // ignore: todo
+                      //  TODO: Conectar socket server
+                      Navigator.pushReplacementNamed(context, 'homescreen');
+                    } else {
+                      mostrarAlerta(context, 'Registro incorrecto', registroOk);
+                    }
+                  },
           )
         ],
       ),

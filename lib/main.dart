@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_hellorelax/function_chat/routes/routes.dart';
+import 'package:flutter_app_hellorelax/function_chat/services/auth_service.dart';
 import 'package:flutter_app_hellorelax/providers/theme_provider.dart';
 import 'package:flutter_app_hellorelax/share_preferences/preferences.dart';
 import 'package:provider/provider.dart';
@@ -23,12 +24,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Hello Relax App',
-      initialRoute: 'login',
-      routes: appRoutes,
-      theme: Provider.of<ThemeProvider>(context).currentTheme,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthService()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Hello Relax App',
+        initialRoute: 'loading',
+        routes: appRoutes,
+        theme: Provider.of<ThemeProvider>(context).currentTheme,
+      ),
     );
   }
 }

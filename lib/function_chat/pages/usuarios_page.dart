@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_hellorelax/function_chat/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:flutter_app_hellorelax/function_chat/models/usuario.dart';
 
 class UsuariosPage extends StatefulWidget {
+  const UsuariosPage({Key? key}) : super(key: key);
+
   @override
   _UsuariosPageState createState() => _UsuariosPageState();
 }
 
 class _UsuariosPageState extends State<UsuariosPage> {
-  RefreshController _refreshController =
+  final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
   final usuarios = [
@@ -23,18 +27,25 @@ class _UsuariosPageState extends State<UsuariosPage> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+    final usuario = authService.usuario;
+
     return Scaffold(
         appBar: AppBar(
-          title: Text('Mi Nombre', style: TextStyle(color: Colors.black87)),
+          title: Text(usuario?.nombre ?? 'Sin Nombre',
+              style: const TextStyle(color: Colors.black87)),
           elevation: 1,
           backgroundColor: Colors.white,
           leading: IconButton(
-            icon: Icon(Icons.exit_to_app, color: Colors.black87),
-            onPressed: () {},
+            icon: const Icon(Icons.exit_to_app, color: Colors.black87),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, 'login');
+              AuthService.deleteToken();
+            },
           ),
           actions: <Widget>[
             Container(
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               child: Icon(Icons.check_circle, color: Colors.blue[400]),
               // child: Icon( Icons.offline_bolt, color: Colors.red ),
             )
@@ -55,9 +66,9 @@ class _UsuariosPageState extends State<UsuariosPage> {
 
   ListView _listViewUsuarios() {
     return ListView.separated(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (_, i) => _usuarioListTile(usuarios[i]),
-        separatorBuilder: (_, i) => Divider(),
+        separatorBuilder: (_, i) => const Divider(),
         itemCount: usuarios.length);
   }
 
@@ -80,7 +91,7 @@ class _UsuariosPageState extends State<UsuariosPage> {
   }
 
   _cargarUsuarios() async {
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(const Duration(milliseconds: 1000));
     // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
   }
