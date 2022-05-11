@@ -15,33 +15,34 @@ class PageTitleProfile extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Usuario: ${Preferences.name} ',
-                style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                )),
-            const SizedBox(height: 10),
-            // const Text('Perfil del usuario',
-            //     style: TextStyle(
-            //         fontSize: 16, color: Color.fromARGB(255, 0, 0, 0))),
-            // Text('Género: ${Preferences.gender}',
-            //     style: const TextStyle(
-            //         fontSize: 16, color: Color.fromARGB(255, 0, 0, 0))),
-            const Divider(),
-            Text('Apodo: ${Preferences.nickname}',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                )),
-            const Divider(),
-            // Text('Tema:  ${Preferences.isDarkmode}',
-            //     style: const TextStyle(
-            //         fontSize: 16, color: Color.fromARGB(255, 0, 0, 0))),
-            // const Divider(),
-          ],
-        ),
+
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // children: [
+            //   Text('Usuario: ${Preferences.name} ',
+            //       style: const TextStyle(
+            //         fontSize: 30,
+            //         fontWeight: FontWeight.bold,
+            //       )),
+            //   const SizedBox(height: 10),
+            //   // const Text('Perfil del usuario',
+            //   //     style: TextStyle(
+            //   //         fontSize: 16, color: Color.fromARGB(255, 0, 0, 0))),
+            //   // Text('Género: ${Preferences.gender}',
+            //   //     style: const TextStyle(
+            //   //         fontSize: 16, color: Color.fromARGB(255, 0, 0, 0))),
+            //   const Divider(),
+            //   Text('Apodo: ${Preferences.nickname}',
+            //       style: const TextStyle(
+            //         fontSize: 20,
+            //         fontWeight: FontWeight.bold,
+            //       )),
+            //   const Divider(),
+            //   // Text('Tema:  ${Preferences.isDarkmode}',
+            //   //     style: const TextStyle(
+            //   //         fontSize: 16, color: Color.fromARGB(255, 0, 0, 0))),
+            //   // const Divider(),
+            // ],
+            ),
       ),
     );
   }

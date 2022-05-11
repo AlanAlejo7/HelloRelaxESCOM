@@ -58,7 +58,6 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
   }
 
   void _escucharMensaje(dynamic payload) {
-    print(payload['mensaje']);
     ChatMessage message = ChatMessage(
       texto: payload['mensaje'],
       uid: payload['de'],

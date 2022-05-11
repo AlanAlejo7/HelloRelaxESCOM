@@ -4,6 +4,7 @@ import 'package:flutter_app_hellorelax/function_chat/routes/routes.dart';
 import 'package:flutter_app_hellorelax/function_chat/services/auth_service.dart';
 import 'package:flutter_app_hellorelax/function_chat/services/chat_service.dart';
 import 'package:flutter_app_hellorelax/function_chat/services/socket_service.dart';
+import 'package:flutter_app_hellorelax/function_news/services/new_service.dart';
 import 'package:flutter_app_hellorelax/providers/theme_provider.dart';
 import 'package:flutter_app_hellorelax/share_preferences/preferences.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthService()),
         ChangeNotifierProvider(create: (_) => SocketService()),
         ChangeNotifierProvider(create: (_) => ChatService()),
+        ChangeNotifierProvider(create: (_) => NewsService()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

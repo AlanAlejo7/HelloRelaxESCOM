@@ -96,9 +96,7 @@ class _SettingsState extends State<Settings> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          final route = MaterialPageRoute(
-                              builder: (context) => const HomeScreen());
-                          Navigator.push(context, route);
+                          Navigator.pushReplacementNamed(context, 'homescreen');
                         },
                         child: const Text('Guardar Cambios'),
                       ),

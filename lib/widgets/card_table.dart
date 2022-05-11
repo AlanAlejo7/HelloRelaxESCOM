@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app_hellorelax/function_chat/pages/usuarios_page.dart';
+import 'package:flutter_app_hellorelax/function_news/pages/tabs_page.dart';
 import 'package:flutter_app_hellorelax/models/cards.dart';
 import 'package:flutter_app_hellorelax/share_preferences/preferences.dart';
 
@@ -31,7 +32,8 @@ class _Boton1 extends StatelessWidget {
       child: InkWell(
         splashColor: const Color.fromRGBO(62, 67, 107, 0.1), // Splash color
         onTap: () {
-          final route = MaterialPageRoute(builder: (context) => const News());
+          final route =
+              MaterialPageRoute(builder: (context) => const TabsPage());
           Navigator.push(context, route);
         }, // Handle your onTap here.
         child: theme != Preferences.isDarkmode
